@@ -13,13 +13,15 @@ class client(person):
         self.__asset = asset
 
     def showasset(self):
-        print("자산 :",self.asset)
+        print("자산 :",self.__asset)
 
     def receive(self, owner, money):
         if type(owner) == client:
             self.owner = owner
-            owner.asset = owner.asset - money
-            self.asset = self.asset + money
+            owner.__asset = owner.__asset - money
+            self.__asset = self.__asset + money
+        else:
+            raise ValueError("Go away")
 
 
 class clerk(person):
@@ -32,3 +34,10 @@ class child(person):
         super().__init__(name,age,gender)
         self.preschool = preschool
 
+
+mike = client('mike',29,'male',10000000)
+matini = client('matini',32,'male',10000000)
+nick = child('nick',5,'male',10000000)
+
+mike.receive(nick,1000000)
+mike.showasset()
