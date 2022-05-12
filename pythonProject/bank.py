@@ -16,9 +16,10 @@ class client(person):
         print("자산 :",self.asset)
 
     def receive(self, owner, money):
-        self.owner = owner
-        owner.asset = owner.asset - money
-        self.asset = self.asset + money
+        if type(owner) == client:
+            self.owner = owner
+            owner.asset = owner.asset - money
+            self.asset = self.asset + money
 
 
 class clerk(person):
